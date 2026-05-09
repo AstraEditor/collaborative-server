@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+spam-cli = "spam:main_cli"
+
+[project]
+name = "collaborative-server"
+version = "0.0.1" 
+description = "AstraEditor collaborative editing local server"
+readme = "README.md"
+requires-python = ">=3.14.4"
+license = "GPL-3.0-or-later"
+authors = [
+    {name = "KOSHINO", email = "aomeone8747@foxmail.com"}
+]

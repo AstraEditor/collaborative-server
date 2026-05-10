@@ -13,20 +13,21 @@ cd collaborative-server
 ```
 
 2. Create and activate virtual environment:
-``` bash
-python -m venv .venv
-```
+
 - Linux or MacOS:
 ``` bash
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 - Windows:
 - - PowerShell:
-``` bash 
+``` bash
+python -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
 - - CMD:
 ``` bash
+python -m venv .venv
 .venv\Scripts\activate.bat
 ```
 

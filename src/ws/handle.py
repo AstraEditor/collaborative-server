@@ -1,4 +1,5 @@
 from json import loads, dumps
+from ..ids import SERVER_HANDLE
 
 def handle(message, self) -> dict:
     """message: 应是json的str形式"""
@@ -6,7 +7,7 @@ def handle(message, self) -> dict:
     message = loads(message) # 处理 message
     result: dict = {}
     match message["com"]:
-        case "join":
+        case SERVER_HANDLE.JOIN:
             """{com: join, id: user_id, name: user_name}"""
             # 检查是否有存在的用户
             for user in self.users:

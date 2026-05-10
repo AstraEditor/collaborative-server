@@ -36,6 +36,6 @@ class WebSocketServer:
         async with websockets.serve(self.handler, self.host, self.port):
             await asyncio.Future()
 
-    def run(self):
+    async def run(self):
         # main
-        asyncio.run(self.start_server())
+        await self.start_server()

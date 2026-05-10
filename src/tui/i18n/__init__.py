@@ -12,5 +12,8 @@ def i(id: str) -> str:
     try:
         result = i18n.I18N[lang][id]
     except KeyError:
-        result = i18n.I18N['en'][id]
+        try:
+            result = i18n.I18N['en'][id]
+        except KeyError:
+            result = id
     return result

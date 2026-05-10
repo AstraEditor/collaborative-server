@@ -11,7 +11,7 @@ class WebSocketServer:
             self,
             host: str = SERVER_SETTING["IP"],
             port: int = SERVER_SETTING["DEFAULTPORT"]
-    ):
+    ) -> None:
         self.host = host
         self.port = port
 

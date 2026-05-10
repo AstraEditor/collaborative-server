@@ -1,7 +1,7 @@
 from src.ws import WebSocketServer
 import asyncio
 
-async def main():
+async def main() -> None:
     server = WebSocketServer()
     await server.run()
 

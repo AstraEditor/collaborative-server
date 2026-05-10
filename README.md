@@ -1,6 +1,9 @@
 # collaborative-server
 AstraEditor collaborative editing local server
 
+> [!NOTE]
+> 我是第一次写这种Python项目，我是新手写的不好请见谅qwq
+
 ## How to use? 
 
 1. Clone this repo:

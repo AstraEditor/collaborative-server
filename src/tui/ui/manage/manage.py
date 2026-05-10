@@ -11,7 +11,7 @@ from ...base_screen import TUI_LAYOUT
 from ....ws import __main__ as ws_main
 
 class ManageScreen(TUI_LAYOUT):
-    def content(self) -> ComposeResult:
+    def content(self) -> ComposeResult: # type: ignore
         self.title = i("MANAGE_TITLE")
         
         yield Manage()

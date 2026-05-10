@@ -15,5 +15,6 @@ class TUI_LAYOUT(Screen):
         yield from self.content()
         yield Footer()
         
-    def content(self):
+    def content(self) -> ComposeResult:
+        """在这里写入页面内容"""
         return []

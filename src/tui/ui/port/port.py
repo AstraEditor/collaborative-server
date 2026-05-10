@@ -9,7 +9,7 @@ from .style import style
 from ...base_screen import TUI_LAYOUT
 
 class PortScreen(TUI_LAYOUT):
-    def content(self) -> ComposeResult:
+    def content(self) -> ComposeResult: # type: ignore
         yield Port_input()
 
 class Port_input(VerticalGroup):

@@ -4,7 +4,7 @@ from textual.app import ComposeResult
 from textual import on
 
 from ...i18n import i
-from ....ids import server_setting
+from ....ids import SERVER_SETTING, SERVER_USERS
 from .style import style
 from ...base_screen import TUI_LAYOUT
 
@@ -20,13 +20,25 @@ class Manage(VerticalGroup):
     """管理UI"""
 
     DEFAULT_CSS = style
-    def __init__(self):
-        super().__init__()
-        self.run_worker(ws_main.main) # 运行ws服务器
+
+    def on_mount(self) -> None:
+        self._run_server()
+
+    def _run_server(self) -> None:
+        self.run_worker(
+            ws_main.main(self),
+            exclusive=True
+        ) # 运行ws服务器
+
+    def _refresh_users(self) -> None:
+        self.refresh(recompose=True)
                 
     def compose(self) -> ComposeResult:
         yield Label(content = i("MANAGE_LABEL"),id = 'manage-label')
+        for user in SERVER_USERS:
+            yield Label(content = user['name'],id = f"manage-users-{user['_id']}")
+        
         
     @on(Input.Submitted, '#port-input')
     def handle_port_submitted(self, event: Input.Submitted) -> None:
-        server_setting.SERVER_PORT = event.value
+        SERVER_SETTING["DEFAULTPORT"] = event.value

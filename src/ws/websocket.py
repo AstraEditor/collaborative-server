@@ -10,10 +10,12 @@ class WebSocketServer:
     def __init__(
             self,
             host: str = SERVER_SETTING["IP"],
-            port: int = SERVER_SETTING["DEFAULTPORT"]
+            port: int = SERVER_SETTING["DEFAULTPORT"],
+            tui = lambda: None
     ) -> None:
         self.host = host
         self.port = port
+        self.tui = tui or (lambda: None) # 因为对于lambda加类型注解有点麻烦了，总之你知道这是lambda
 
         self.messages: list[dict] = []
 
@@ -29,7 +31,8 @@ class WebSocketServer:
     async def handler(self, websocket) -> None:
         async for message in websocket:
             getBack = handle(message, self)
-            await websocket.send(getBack["result"])
+            if self.tui._refresh_users(): self.tui._refresh_users() # type: ignore
+            await websocket.send(str(getBack["result"]))
 
     async def start_server(self) -> None:
         """开启服务器"""

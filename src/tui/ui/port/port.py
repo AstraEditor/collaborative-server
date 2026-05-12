@@ -4,7 +4,7 @@ from textual.app import ComposeResult
 from textual import on
 
 from ...i18n import i
-from ....ids import server_setting
+from ....ids import SERVER_SETTING
 from .style import style
 from ...base_screen import TUI_LAYOUT
 
@@ -18,8 +18,8 @@ class Port_input(VerticalGroup):
     DEFAULT_CSS = style
     def compose(self) -> ComposeResult:
         yield Label(content = i("PORT_LABEL"),id = 'port-label')
-        yield Input(value=str(server_setting.SERVER_PORT),id = 'port-input')
+        yield Input(value=str(SERVER_SETTING['DEFAULTPORT']),id = 'port-input')
 
     @on(Input.Submitted, '#port-input')
     def handle_port_submitted(self, event: Input.Submitted) -> None:
-        server_setting.SERVER_PORT = event.value
+        SERVER_SETTING['DEFAULTPORT'] = event.value

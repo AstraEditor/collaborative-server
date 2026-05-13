@@ -1,7 +1,7 @@
 from json import loads, dumps
 from ..ids import SERVER_HANDLE, SERVER_USERS
 
-def handle(message: str, self) -> dict:
+def handle(message: str, server, tui) -> dict:
     """message: 应是json的str形式"""
 
     message_dict: dict = loads(message) # 处理 message
@@ -12,8 +12,8 @@ def handle(message: str, self) -> dict:
             # 检查是否有存在的用户
             # flag: 是否有存在的用户
             haveSameUser: bool = False
-            for user in self.users:
-                if user["id"] == message_dict["id"]:
+            for user in SERVER_USERS:
+                if user["_id"] == message_dict["id"]:
                     result = {
                         "type": "failed",
                         "info": ""
@@ -30,6 +30,12 @@ def handle(message: str, self) -> dict:
                     "type": "success",
                     "info": "add user success."
                 }
+        case _:
+            result = {
+                "type": "failed",
+                "info": "undefined command"
+            }
+            
     # result: {type: 'failed' | 'success', info: str}
     return {
         "result": dumps(result)

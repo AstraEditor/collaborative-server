@@ -30,6 +30,16 @@ def handle(message: str, server, tui) -> dict:
                     "type": "success",
                     "info": "add user success."
                 }
+        case SERVER_HANDLE.EXIT:
+            """{com: exit, id: user_id}"""
+            for userIndex in range(len(SERVER_USERS)):
+                if SERVER_USERS[userIndex]["_id"] == message_dict["id"]:
+                    SERVER_USERS.pop(userIndex)
+                    result = {
+                        "type": "success",
+                        "info": "remove user success."
+                    }
+                    break
         case _:
             result = {
                 "type": "failed",
